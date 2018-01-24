@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B6898399-8F0D-4EE2-A17B-D6868AC396B6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PakingBingBang</RootNamespace>
+    <AssemblyName>PakingBingBang</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Box_ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrypterPass">
+      <HintPath>..\..\..\..\Visual Studio 2015\Projects\SesionesIntelisis\SesionesIntelisis\bin\Debug\CrypterPass.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.3.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.ProcessingObjectModel\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.Types\12.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conexion.cs" />
+    <Compile Include="ctrlBtnCaja.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlBtnCaja.Designer.cs">
+      <DependentUpon>ctrlBtnCaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlGridDetalle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlGridDetalle.Designer.cs">
+      <DependentUpon>ctrlGridDetalle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlGridDetalleBC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlGridDetalleBC.designer.cs">
+      <DependentUpon>ctrlGridDetalleBC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlGridDetalleBD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlGridDetalleBD.designer.cs">
+      <DependentUpon>ctrlGridDetalleBD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlGridDetalleTop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlGridDetalleTop.designer.cs">
+      <DependentUpon>ctrlGridDetalleTop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet_Rep.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet_Rep.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Datos.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMGridHist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMGridHist.Designer.cs">
+      <DependentUpon>FRMGridHist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMMensaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMMensaje.Designer.cs">
+      <DependentUpon>FRMMensaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMPacking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMPacking.Designer.cs">
+      <DependentUpon>FRMPacking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMPendientes.Designer.cs">
+      <DependentUpon>FRMPendientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMprincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMprincipal.Designer.cs">
+      <DependentUpon>FRMprincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMReporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMReporte.Designer.cs">
+      <DependentUpon>FRMReporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_agregarArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_agregarArticulos.Designer.cs">
+      <DependentUpon>FRM_agregarArticulos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRM_DET_CAJAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRM_DET_CAJAS.Designer.cs">
+      <DependentUpon>FRM_DET_CAJAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Preview.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporte.cs" />
+    <EmbeddedResource Include="ctrlBtnCaja.resx">
+      <DependentUpon>ctrlBtnCaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlGridDetalle.resx">
+      <DependentUpon>ctrlGridDetalle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlGridDetalleBC.resx">
+      <DependentUpon>ctrlGridDetalleBC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlGridDetalleBD.resx">
+      <DependentUpon>ctrlGridDetalleBD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlGridDetalleTop.resx">
+      <DependentUpon>ctrlGridDetalleTop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMGridHist.resx">
+      <DependentUpon>FRMGridHist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMMensaje.resx">
+      <DependentUpon>FRMMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMPacking.resx">
+      <DependentUpon>FRMPacking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMPendientes.resx">
+      <DependentUpon>FRMPendientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMprincipal.resx">
+      <DependentUpon>FRMprincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMReporte.resx">
+      <DependentUpon>FRMReporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_agregarArticulos.resx">
+      <DependentUpon>FRM_agregarArticulos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRM_DET_CAJAS.resx">
+      <DependentUpon>FRM_DET_CAJAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Report.rdlc" />
+    <None Include="App.config" />
+    <None Include="DataSet_Rep.xsc">
+      <DependentUpon>DataSet_Rep.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet_Rep.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet_Rep.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet_Rep.xss">
+      <DependentUpon>DataSet_Rep.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\DataSources\Datos.datasource" />
+    <None Include="Properties\DataSources\Reporte.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sans nom %2827%29.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pixadex.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\045.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0451.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\031.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0311.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\046.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0461.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openBox2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\openBox1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1801.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1802.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\security.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\058.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0581.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\029.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\0291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Box_ico.ico" />
+    <None Include="Resources\Warning-6.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\0282.png" />
+    <None Include="Resources\0281.png" />
+    <None Include="Resources\028.png" />
+    <None Include="Resources\0241.png" />
+    <None Include="Resources\024.png" />
+    <None Include="Resources\box_principal.png" />
+    <None Include="Resources\1571.png" />
+    <None Include="Resources\157.png" />
+    <None Include="Resources\finished.png" />
+    <None Include="Resources\finished1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

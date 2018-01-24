@@ -1,0 +1,10 @@
+=====================================================
+SQL
+nuevos:
+	SP_Detalle_Packing.sp
+	SP_Packing_DetCaja.sp
+	SP_Packing_Insert.sp
+	SP_RepPacking
+	SP_Historico_Packing.sp
+	tbls_packing
+
