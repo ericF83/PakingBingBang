@@ -34,18 +34,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvArticulos = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dtpDe = new System.Windows.Forms.DateTimePicker();
-            this.dtpA = new System.Windows.Forms.DateTimePicker();
-            this.pnlFecha = new DevComponents.DotNetBar.PanelEx();
-            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
-            this.txtXID = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.btnXAdd = new DevComponents.DotNetBar.ButtonX();
-            this.btnXHist = new DevComponents.DotNetBar.ButtonX();
-            this.lblDesde = new DevComponents.DotNetBar.LabelX();
-            this.lblA = new DevComponents.DotNetBar.LabelX();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estilo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Color = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpDe = new System.Windows.Forms.DateTimePicker();
+            this.dtpA = new System.Windows.Forms.DateTimePicker();
+            this.pnlFecha = new DevComponents.DotNetBar.PanelEx();
+            this.lblA = new DevComponents.DotNetBar.LabelX();
+            this.lblDesde = new DevComponents.DotNetBar.LabelX();
+            this.btnXHist = new DevComponents.DotNetBar.ButtonX();
+            this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
+            this.btnXAdd = new DevComponents.DotNetBar.ButtonX();
+            this.txtXID = new DevComponents.DotNetBar.Controls.TextBoxX();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.pnlFecha.SuspendLayout();
             this.panelEx1.SuspendLayout();
@@ -80,9 +80,40 @@
             this.dgvArticulos.Location = new System.Drawing.Point(2, 169);
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
-            this.dgvArticulos.Size = new System.Drawing.Size(434, 343);
+            this.dgvArticulos.Size = new System.Drawing.Size(656, 343);
             this.dgvArticulos.TabIndex = 1;
             this.dgvArticulos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellContentDoubleClick);
+            this.dgvArticulos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellDoubleClick);
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.HeaderText = "ID";
+            this.ID.MaxInputLength = 100;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 80;
+            // 
+            // Estilo
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Estilo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Estilo.HeaderText = "FECHA CREACION";
+            this.Estilo.MaxInputLength = 100;
+            this.Estilo.Name = "Estilo";
+            this.Estilo.ReadOnly = true;
+            this.Estilo.Width = 150;
+            // 
+            // Color
+            // 
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Color.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Color.HeaderText = "FECHA CONCLUCION";
+            this.Color.MaxInputLength = 100;
+            this.Color.Name = "Color";
+            this.Color.ReadOnly = true;
+            this.Color.Width = 150;
             // 
             // dtpDe
             // 
@@ -123,6 +154,50 @@
             this.pnlFecha.Style.GradientAngle = 90;
             this.pnlFecha.TabIndex = 4;
             // 
+            // lblA
+            // 
+            // 
+            // 
+            // 
+            this.lblA.BackgroundStyle.Class = "";
+            this.lblA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblA.Location = new System.Drawing.Point(10, 48);
+            this.lblA.Name = "lblA";
+            this.lblA.Size = new System.Drawing.Size(99, 23);
+            this.lblA.TabIndex = 12;
+            this.lblA.Text = "Hasta:";
+            // 
+            // lblDesde
+            // 
+            // 
+            // 
+            // 
+            this.lblDesde.BackgroundStyle.Class = "";
+            this.lblDesde.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDesde.Location = new System.Drawing.Point(12, 0);
+            this.lblDesde.Name = "lblDesde";
+            this.lblDesde.Size = new System.Drawing.Size(97, 23);
+            this.lblDesde.TabIndex = 6;
+            this.lblDesde.Text = "Desde:";
+            // 
+            // btnXHist
+            // 
+            this.btnXHist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXHist.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
+            this.btnXHist.HoverImage = global::PakingBingBang.Properties.Resources.findW;
+            this.btnXHist.Image = global::PakingBingBang.Properties.Resources.findB;
+            this.btnXHist.ImageFixedSize = new System.Drawing.Size(70, 70);
+            this.btnXHist.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnXHist.Location = new System.Drawing.Point(82, 99);
+            this.btnXHist.Name = "btnXHist";
+            this.btnXHist.Size = new System.Drawing.Size(56, 43);
+            this.btnXHist.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.btnXHist.TabIndex = 11;
+            this.btnXHist.Tooltip = "Buscar y Agregar";
+            this.btnXHist.Click += new System.EventHandler(this.buttonX1_Click);
+            // 
             // panelEx1
             // 
             this.panelEx1.CanvasColor = System.Drawing.SystemColors.Control;
@@ -140,6 +215,22 @@
             this.panelEx1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.panelEx1.Style.GradientAngle = 90;
             this.panelEx1.TabIndex = 5;
+            // 
+            // btnXAdd
+            // 
+            this.btnXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
+            this.btnXAdd.HoverImage = global::PakingBingBang.Properties.Resources.findW;
+            this.btnXAdd.Image = global::PakingBingBang.Properties.Resources.findB;
+            this.btnXAdd.ImageFixedSize = new System.Drawing.Size(70, 70);
+            this.btnXAdd.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnXAdd.Location = new System.Drawing.Point(75, 82);
+            this.btnXAdd.Name = "btnXAdd";
+            this.btnXAdd.Size = new System.Drawing.Size(56, 43);
+            this.btnXAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.btnXAdd.TabIndex = 16;
+            this.btnXAdd.Tooltip = "Buscar y Agregar";
+            this.btnXAdd.Click += new System.EventHandler(this.btnXAdd_Click);
             // 
             // txtXID
             // 
@@ -160,101 +251,11 @@
             this.txtXID.WatermarkText = "ID Packing";
             this.txtXID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXID_KeyDown);
             // 
-            // btnXAdd
-            // 
-            this.btnXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnXAdd.HoverImage = global::PakingBingBang.Properties.Resources.findW;
-            this.btnXAdd.Image = global::PakingBingBang.Properties.Resources.findB;
-            this.btnXAdd.ImageFixedSize = new System.Drawing.Size(70, 70);
-            this.btnXAdd.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnXAdd.Location = new System.Drawing.Point(74, 82);
-            this.btnXAdd.Name = "btnXAdd";
-            this.btnXAdd.Size = new System.Drawing.Size(56, 43);
-            this.btnXAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.btnXAdd.TabIndex = 16;
-            this.btnXAdd.Tooltip = "Buscar y Agregar";
-            this.btnXAdd.Click += new System.EventHandler(this.btnXAdd_Click);
-            // 
-            // btnXHist
-            // 
-            this.btnXHist.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnXHist.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnXHist.HoverImage = global::PakingBingBang.Properties.Resources.findW;
-            this.btnXHist.Image = global::PakingBingBang.Properties.Resources.findB;
-            this.btnXHist.ImageFixedSize = new System.Drawing.Size(70, 70);
-            this.btnXHist.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnXHist.Location = new System.Drawing.Point(82, 99);
-            this.btnXHist.Name = "btnXHist";
-            this.btnXHist.Size = new System.Drawing.Size(56, 43);
-            this.btnXHist.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.btnXHist.TabIndex = 11;
-            this.btnXHist.Tooltip = "Buscar y Agregar";
-            this.btnXHist.Click += new System.EventHandler(this.buttonX1_Click);
-            // 
-            // lblDesde
-            // 
-            // 
-            // 
-            // 
-            this.lblDesde.BackgroundStyle.Class = "";
-            this.lblDesde.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesde.Location = new System.Drawing.Point(12, 0);
-            this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(97, 23);
-            this.lblDesde.TabIndex = 6;
-            this.lblDesde.Text = "Desde:";
-            // 
-            // lblA
-            // 
-            // 
-            // 
-            // 
-            this.lblA.BackgroundStyle.Class = "";
-            this.lblA.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblA.Location = new System.Drawing.Point(10, 48);
-            this.lblA.Name = "lblA";
-            this.lblA.Size = new System.Drawing.Size(99, 23);
-            this.lblA.TabIndex = 12;
-            this.lblA.Text = "Hasta:";
-            // 
-            // ID
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.MaxInputLength = 100;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 80;
-            // 
-            // Estilo
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Estilo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Estilo.HeaderText = "FECHA CREACION";
-            this.Estilo.MaxInputLength = 100;
-            this.Estilo.Name = "Estilo";
-            this.Estilo.ReadOnly = true;
-            this.Estilo.Width = 150;
-            // 
-            // Color
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Color.HeaderText = "FECHA CONCLUCION";
-            this.Color.MaxInputLength = 100;
-            this.Color.Name = "Color";
-            this.Color.ReadOnly = true;
-            this.Color.Width = 150;
-            // 
             // FRMGridHist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 514);
+            this.ClientSize = new System.Drawing.Size(670, 514);
             this.Controls.Add(this.panelEx1);
             this.Controls.Add(this.pnlFecha);
             this.Controls.Add(this.dgvArticulos);

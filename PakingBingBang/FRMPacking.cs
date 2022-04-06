@@ -20,13 +20,19 @@ namespace PakingBingBang
         int ID_packing;
         int Cont_art = 0;
         bool esPendiente = false;
-
+        private string TipoMov = "";
         public FRMPacking(bool esPend)
         {
             InitializeComponent();
             this.esPendiente = esPend;                    
         }
-        
+
+        public FRMPacking(bool esPend, string tipoMov)
+        {
+            InitializeComponent();
+            this.esPendiente = esPend;
+            this.TipoMov = tipoMov;
+        }
         //public FRMPacking(int id_pack)
         //{
         //    this.ID_packing = id_pack;
@@ -77,7 +83,7 @@ namespace PakingBingBang
                         newTab = tabP.CreateTab(ordenes[key]);                        
                         panel = (TabControlPanel)newTab.AttachedControl;
                         panel.AutoScroll = true;
-                        listCategoria = con.listaCat(key);
+                        listCategoria = con.listaCat(key, TipoMov);
                         foreach(string s in listCategoria)
                         {
                             if (s == "TOPS")
@@ -88,7 +94,7 @@ namespace PakingBingBang
                                 ctT.Location = new Point(x, y);
                                 ctT.AutoScroll = true;
                                 panel.Controls.Add(ctT);
-                                con.dgvT(ctT, key);
+                                con.dgvT(ctT, key,TipoMov);
                                 y = y + increm;
                                 Cont_art = Cont_art + Convert.ToInt32(ctT.txtTot.Text);
                                 txtXT_art.Text = Convert.ToString(Cont_art );
@@ -102,7 +108,7 @@ namespace PakingBingBang
                                 ctBD.lblXorden.Text = s;
                                 ctBD.Location = new Point(x, y);
                                 panel.Controls.Add(ctBD);
-                                con.dgvBD(ctBD,key);
+                                con.dgvBD(ctBD,key, TipoMov);
                                 y = y + increm;
                                 Cont_art = Cont_art + Convert.ToInt32(ctBD.txtTot.Text);
                                 txtXT_art.Text = Convert.ToString(Cont_art );
@@ -114,7 +120,7 @@ namespace PakingBingBang
                                 ctBC.lblXorden.Text = s;
                                 ctBC.Location = new Point(x, y);
                                 panel.Controls.Add(ctBC);
-                                con.dgvBC(ctBC, key);
+                                con.dgvBC(ctBC, key, TipoMov);
                                 y = y + increm;
                                 Cont_art = Cont_art + Convert.ToInt32(ctBC.txtTot.Text);
                                 txtXT_art.Text = Convert.ToString(Cont_art );
@@ -126,13 +132,26 @@ namespace PakingBingBang
                                 ctU.lblXorden.Text = s;
                                 ctU.Location = new Point(x, y);
                                 panel.Controls.Add(ctU);
-                                con.dgvUN(ctU, key);
+                                con.dgvUN(ctU, key, TipoMov);
                                 y = y + increm;
                                 Cont_art = Cont_art + Convert.ToInt32(ctU.txtTot.Text);
                                 txtXT_art.Text = Convert.ToString(Cont_art );
                             }
-                            
+
+                        else if (s == "OTROS")
+                        {
+                            ctrlGridDetalleOtros ctO = new ctrlGridDetalleOtros();
+                            ctO.Name = ordenes[key].ToString() + s;
+                            ctO.lblXorden.Text = s;
+                            ctO.Location = new Point(x, y);
+                            panel.Controls.Add(ctO);
+                            con.dgvOTROS(ctO, key, TipoMov);
+                            y = y + increm;
+                            Cont_art = Cont_art + Convert.ToInt32(ctO.txtTot.Text);
+                            txtXT_art.Text = Convert.ToString(Cont_art);
                         }
+
+                    }
                     //Cont_art = Cont_art + conex.total_orden(key);
                     swBtnPack = new DevComponents.DotNetBar.Controls.SwitchButton();
                     swBtnPack = propiedades(ordenes[key]);
@@ -154,7 +173,7 @@ namespace PakingBingBang
                 if(ordenes.Count() > 0)
                 try
                 {
-                    DescontarEnGrid(ID_packing, conex.GET_MOVID(Convert.ToInt32(tabP.SelectedPanel.Name)));
+                    DescontarEnGrid(ID_packing, conex.GET_MOVID(Convert.ToInt32(tabP.SelectedPanel.Name),TipoMov));
                 }
                 catch(Exception ER)
                 {
@@ -210,7 +229,7 @@ namespace PakingBingBang
                         c.Enabled = false;                                        
                 }
 
-                FRM_agregarArticulos AgrArt = new FRM_agregarArticulos(ID_packing, this);
+                FRM_agregarArticulos AgrArt = new FRM_agregarArticulos(ID_packing, this, TipoMov);
                 AgrArt.lblXorden.Text = "ORDEN " + tabP.SelectedPanel.Name;
                 AgrArt.vaciarInfoOrden(Convert.ToInt32(tabP.SelectedPanel.Name));
                 AgrArt.ShowDialog();
@@ -219,7 +238,7 @@ namespace PakingBingBang
                 //    swBtnPack.Enabled = false;
                 //else
                     swBtnPack.Value = false;
-                DescontarEnGrid(ID_packing, conex.GET_MOVID(Convert.ToInt32(tabP.SelectedPanel.Name)));
+                DescontarEnGrid(ID_packing, conex.GET_MOVID(Convert.ToInt32(tabP.SelectedPanel.Name),TipoMov));
             }
             else
             {
@@ -252,7 +271,7 @@ namespace PakingBingBang
                             {                               
                               ncolor = Convert.ToInt32(ctop.dgvXT2.Rows[x].Cells["nColor"].Value);
                               art = ctop.dgvXT2.Rows[x].Cells["ART"].Value.ToString();
-                              ctop.dgvXT2.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name)), art, ncolor);
+                              ctop.dgvXT2.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name),TipoMov), art, ncolor);
                               
                             }
                         }
@@ -264,7 +283,7 @@ namespace PakingBingBang
                             {
                                 ncolor = Convert.ToInt32(ctop.dgvXdetalle.Rows[x].Cells["nColor"].Value);
                                 art = ctop.dgvXdetalle.Rows[x].Cells["ART"].Value.ToString();
-                                ctop.dgvXdetalle.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name)), art, ncolor);
+                                ctop.dgvXdetalle.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name),TipoMov), art, ncolor);
 
                             }
                         }
@@ -276,7 +295,7 @@ namespace PakingBingBang
                             {
                                 ncolor = Convert.ToInt32(ctop.dataGridViewX1.Rows[x].Cells["nColor"].Value);
                                 art = ctop.dataGridViewX1.Rows[x].Cells["ART"].Value.ToString();
-                                ctop.dataGridViewX1.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name)), art, ncolor);
+                                ctop.dataGridViewX1.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name),TipoMov), art, ncolor);
 
                             }
                         }
@@ -288,7 +307,7 @@ namespace PakingBingBang
                             {
                                 ncolor = Convert.ToInt32(ctop.dgvXT1.Rows[x].Cells["nColor"].Value);
                                 art = ctop.dgvXT1.Rows[x].Cells["ART"].Value.ToString();
-                                ctop.dgvXT1.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name)), art, ncolor);
+                                ctop.dgvXT1.Rows[x].Cells["escan"].Value = conex.Actualiza_grid(idpack, conex.GET_MOVID(Convert.ToInt32(tab.Name),TipoMov), art, ncolor);
 
                             }
                         }
@@ -383,8 +402,7 @@ namespace PakingBingBang
             if(dr == DialogResult.Yes)
             {
                 conex.cancelar_todo(ID_packing);
-                this.Dispose();
-                Application.Exit();
+                this.Dispose();                
             }
         }
 
@@ -430,7 +448,7 @@ namespace PakingBingBang
             }
             else
             {
-                if (MessageBox.Show("falta capturar datos en algunas de las cajas, Desae continuar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (MessageBox.Show("falta capturar datos en algunas de las cajas, Desea continuar?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     //OBJ_CRY.Refresh();
                     //OBJ_CRY.SetParameterValue("@Id_Packing", ID_packing);

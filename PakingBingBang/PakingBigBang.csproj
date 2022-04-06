@@ -51,18 +51,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CrypterPass">
-      <HintPath>..\..\..\..\Visual Studio 2015\Projects\SesionesIntelisis\SesionesIntelisis\bin\Debug\CrypterPass.dll</HintPath>
+      <HintPath>..\..\..\LIcencias\CrypterPass.dll</HintPath>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=9.3.0.4, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=11.3.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
-    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.ReportViewer.ProcessingObjectModel\12.0.0.0__89845dcd8080cc91\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Types, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.SqlServer.Types\12.0.0.0__89845dcd8080cc91\Microsoft.SqlServer.Types.dll</HintPath>
@@ -108,6 +106,12 @@
     <Compile Include="ctrlGridDetalleBD.designer.cs">
       <DependentUpon>ctrlGridDetalleBD.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrlGridDetalleOtros.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlGridDetalleOtros.designer.cs">
+      <DependentUpon>ctrlGridDetalleOtros.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrlGridDetalleTop.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -137,6 +141,12 @@
     </Compile>
     <Compile Include="FRMMensaje.Designer.cs">
       <DependentUpon>FRMMensaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FRMOrdenOrPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FRMOrdenOrPedido.Designer.cs">
+      <DependentUpon>FRMOrdenOrPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="FRMPacking.cs">
       <SubType>Form</SubType>
@@ -190,6 +200,9 @@
     <EmbeddedResource Include="ctrlGridDetalleBD.resx">
       <DependentUpon>ctrlGridDetalleBD.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrlGridDetalleOtros.resx">
+      <DependentUpon>ctrlGridDetalleOtros.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrlGridDetalleTop.resx">
       <DependentUpon>ctrlGridDetalleTop.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FRMMensaje.resx">
       <DependentUpon>FRMMensaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FRMOrdenOrPedido.resx">
+      <DependentUpon>FRMOrdenOrPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FRMPacking.resx">
       <DependentUpon>FRMPacking.cs</DependentUpon>

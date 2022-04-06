@@ -26,7 +26,7 @@ namespace PakingBingBang
             else
             {
                 dgvArticulos.Rows.Clear();
-                conex.Historico(this, 0,"FECHA", dtpDe.Value.ToString("yyyy-MM-dd"), dtpA.Value.ToString("yyyy-MM-dd"));
+                conex.Historico(this, 0,"FECHA", dtpDe.Value.ToString("dd-MM-yyyy"), dtpA.Value.ToString("dd-MM-yyyy"));
             }             
         }
 
@@ -69,7 +69,12 @@ namespace PakingBingBang
 
         private void dgvArticulos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-          int id = (int)(dgvArticulos.Rows[e.RowIndex].Cells["ID"].Value);
+          
+        }
+
+        private void dgvArticulos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = (int)(dgvArticulos.Rows[e.RowIndex].Cells["ID"].Value);
             conex.GeneraReporte(id);
         }
     }

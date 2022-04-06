@@ -19,17 +19,19 @@ namespace PakingBingBang
         int ContArt = 0;
         bool esF2 = false;
         int nCaja = 0;
-        public FRM_agregarArticulos( int idP, FRMPacking f)
+        private string TipoMov = "";
+        public FRM_agregarArticulos( int idP, FRMPacking f, string tipoMov)
         {
             InitializeComponent();
             this.id_packing = idP;
             this.fP = f;
+            this.TipoMov = tipoMov;
         }
 
         public void vaciarInfoOrden( int id_vt)
         {
-            this.id_orden = conex.GET_MOVID(id_vt);
-            conex.InfoArticulosLineal(this, id_vt,id_orden,id_packing);
+            this.id_orden = conex.GET_MOVID(id_vt, TipoMov);
+            conex.InfoArticulosLineal(this, id_vt,id_orden,id_packing, TipoMov);
             lblXorden.Text = "Orden " + Convert.ToString(this.id_orden);
         }
 
@@ -54,7 +56,7 @@ namespace PakingBingBang
             int TotalCant = 0, TotalEnC = 0;
             foreach (DataGridViewRow row in dgvArticulos.Rows)
             {                
-                if (row.Cells["Codigo"].Value.ToString() == codigo)
+                if (conex.verificarCB(codigo, row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString()))
                 {
                     existe = true;
                     if (Convert.ToInt32(row.Cells["Cantidad"].Value) == Convert.ToInt32(row.Cells["EnCaja"].Value))
@@ -71,7 +73,7 @@ namespace PakingBingBang
                         row.Selected = true;
                         Font font = new Font("Arial", 12.0f,FontStyle.Bold);
                         row.Cells["EnCaja"].Style.Font = font;
-                        conex.Detalle_Caja(nCaja, id_packing, Convert.ToInt32(row.Cells["MovID"].Value), row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString(), Convert.ToInt32(row.Cells["Cantidad"].Value), 1, row.Cells["Codigo"].Value.ToString());
+                        conex.Detalle_Caja(nCaja, id_packing, Convert.ToInt32(row.Cells["MovID"].Value), row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString(), Convert.ToInt32(row.Cells["Cantidad"].Value), 1, codigo);
                         lblNUmero.Text = Convert.ToString(ContArt = ContArt + 1);
                         btnXCancel.Enabled = true;                
                     }
@@ -114,7 +116,7 @@ namespace PakingBingBang
             {
                 foreach (DataGridViewRow row in dgvArticulos.Rows)
                 {
-                    if (row.Cells["Codigo"].Value.ToString() == codigo)
+                    if (conex.verificarCB(codigo, row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString()))
                     {
                         existe = true;
                         if (Convert.ToInt32(row.Cells["Cantidad"].Value) == Convert.ToInt32(row.Cells["EnCaja"].Value))
@@ -140,9 +142,9 @@ namespace PakingBingBang
                                 dgvArticulos.FirstDisplayedScrollingRowIndex = row.Index;
                                 Font font = new Font("Arial", 12.0f, FontStyle.Bold);
                                 row.Cells["EnCaja"].Style.Font = font;
-                                conex.Detalle_Caja(nCaja, id_packing, Convert.ToInt32(row.Cells["MovID"].Value), row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString(), Convert.ToInt32(row.Cells["Cantidad"].Value), scan, row.Cells["Codigo"].Value.ToString());
+                                conex.Detalle_Caja(nCaja, id_packing, Convert.ToInt32(row.Cells["MovID"].Value), row.Cells["Articulo"].Value.ToString(), row.Cells["SUBCUENTA"].Value.ToString(), Convert.ToInt32(row.Cells["Cantidad"].Value), scan, codigo);
                                 lblNUmero.Text = Convert.ToString(ContArt = ContArt + scan);
-                                btnXCancel.Enabled = true;
+                                btnXCancel.Enabled = true; 
                                 txtXNum.Text = String.Empty;
                                 txtXNum.Visible = false;
 
@@ -165,7 +167,7 @@ namespace PakingBingBang
                                         
                                 }
                             }
-
+                                                                        
                         }
                     }
 
@@ -197,6 +199,26 @@ namespace PakingBingBang
                 Font font = new Font("Arial", 10.0f, FontStyle.Bold);
                 dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.Font = font;
             }
+
+            if (!conex.existe_cb(dgvArticulos.Rows[e.RowIndex].Cells["Articulo"].Value.ToString(), Convert.ToString(dgvArticulos.Rows[e.RowIndex].Cells["SUBCUENTA"].Value)))
+            {
+                dgvArticulos.ReadOnly = false;
+                DataGridViewTextBoxCell cell1 = dgvArticulos.Rows[e.RowIndex].Cells["SUBCUENTA"] as DataGridViewTextBoxCell;
+                cell1.ReadOnly = true;
+                DataGridViewTextBoxCell cell2 = dgvArticulos.Rows[e.RowIndex].Cells["Articulo"] as DataGridViewTextBoxCell;
+                cell2.ReadOnly = true;
+                DataGridViewTextBoxCell cell3 = dgvArticulos.Rows[e.RowIndex].Cells["Estilo"] as DataGridViewTextBoxCell;
+                cell3.ReadOnly = true;
+                DataGridViewTextBoxCell cell4 = dgvArticulos.Rows[e.RowIndex].Cells["Color"] as DataGridViewTextBoxCell;
+                cell4.ReadOnly = true;
+                DataGridViewTextBoxCell cell5 = dgvArticulos.Rows[e.RowIndex].Cells["Cantidad"] as DataGridViewTextBoxCell;
+                cell5.ReadOnly = true;
+                DataGridViewTextBoxCell cell6 = dgvArticulos.Rows[e.RowIndex].Cells["Talla"] as DataGridViewTextBoxCell;
+                cell6.ReadOnly = true;
+                //dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].ReadOnly = false;
+
+            }
+
         }
 
         private void FRM_agregarArticulos_Load(object sender, EventArgs e)
@@ -522,6 +544,72 @@ namespace PakingBingBang
             {
                 conex.CajaPendiente(id_packing, Convert.ToInt32(lblXnCaja.Text));
                 this.Dispose();
+            }
+        }
+
+        private void dgvArticulos_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (dgvArticulos.Columns[e.ColumnIndex].Name == "EnCaja")
+            //{
+            //    MessageBox.Show("ok");
+            //}
+        }
+
+        private void dgvArticulos_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int TotalCant = 0, TotalEnC = 0;
+            if (dgvArticulos.Columns[e.ColumnIndex].Name == "EnCaja")
+            {
+                //if (Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["Cantidad"].Value) == Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value))
+                //{
+                //    //MessageBox.Show("Cantidad total en caja");
+                //    FRMMensaje msj = new FRMMensaje();
+                //    msj.lblMensaje.Text = "Cantidad total en caja";
+                //    msj.ShowDialog();
+                //}
+                //else
+                //{
+                    if ((Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value)) > Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["Cantidad"].Value))
+                    {
+                        MessageBox.Show("el numero introducido excede la cantidad de articulos ", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value = "0";
+                        txtXNum.Text = String.Empty;
+                        return;
+                    }
+                    else
+                    {
+                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value = Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value);
+                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.ForeColor = System.Drawing.Color.Red;
+                        dgvArticulos.Rows[e.RowIndex].Selected = true;
+                        dgvArticulos.FirstDisplayedScrollingRowIndex = dgvArticulos.Rows[e.RowIndex].Index;
+                        Font font = new Font("Arial", 12.0f, FontStyle.Bold);
+                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.Font = font;
+                        conex.Detalle_Caja(nCaja, id_packing, Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["MovID"].Value), dgvArticulos.Rows[e.RowIndex].Cells["Articulo"].Value.ToString(), dgvArticulos.Rows[e.RowIndex].Cells["SUBCUENTA"].Value.ToString(), Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["Cantidad"].Value), Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value), "0");
+                        lblNUmero.Text = Convert.ToString(ContArt = ContArt + Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value));
+                        btnXCancel.Enabled = true;
+                        txtXNum.Text = String.Empty;
+                        txtXNum.Visible = false;
+
+                        foreach (DataGridViewRow row1 in dgvArticulos.Rows)
+                        {
+                            TotalCant = TotalCant + Convert.ToInt32(row1.Cells["Cantidad"].Value);
+                            TotalEnC = TotalEnC + Convert.ToInt32(row1.Cells["EnCaja"].Value);
+                        }
+                        if (TotalCant == TotalEnC)
+                        {
+                            DialogResult d = MessageBox.Show("Orden empaquetada,", "aviso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            dgvArticulos.Columns[e.ColumnIndex].ReadOnly = true;                            
+                        //if (d == DialogResult.No)
+                        //        this.Dispose();
+                        //    else
+                        //    {
+                        //        conex.CerrarCAJA(id_packing, nCaja);
+                        //        this.Dispose();
+                        //    }
+
+                        }
+                    }
+                //}
             }
         }
     }

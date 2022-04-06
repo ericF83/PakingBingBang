@@ -47,73 +47,137 @@ namespace PakingBingBang
             user = Crypt.Desencriptar(ConfigurationManager.AppSettings["username"]);
             pass = Crypt.Desencriptar(ConfigurationManager.AppSettings["password"]);
             cad = "Server= " + server + "; database= " + db + "; user id=" + user + "; Password= " + pass + "; Connection TimeOut=7";
+            //cad = "Server= DEVELOPMENT\\SQLDESARROLLO ; database = desarrollo; user id = sa ; Password = ; Connection TimeOut = 7";
 
             return cad;
         }
 
         public void Ordenes(FRMBuscaOrd f, string orden)
         {
-            string consulta = "select v.ID, v.MovID AS Orden, c.Cliente + '  '+ c.Nombre AS Nombre, c.Direccion + ' '+ c.Poblacion as Direccion,ISNULL(a.nombre,'N/A') as Agente from Venta v with(nolock) LEFT JOIN Cte c WITH(NOLOCK) ON c.Cliente = v.Cliente LEFT JOIN Agente a WITH(NOLOCK) ON a.Agente = v.Agente where Mov = 'Orden Surtido'  and v.MovID = '" + orden + "'";
+            string consulta = "select v.ID, v.MovID AS Orden, c.Cliente + '  '+ c.Nombre AS Nombre, c.Direccion + ' '+ c.Poblacion as Direccion,ISNULL(a.nombre,'N/A') as Agente, cast(0 as bit) as chk from BigBang.dbo.Venta v with(nolock) LEFT JOIN BigBang.dbo.Cte c WITH(NOLOCK) ON c.Cliente = v.Cliente LEFT JOIN BigBang.dbo.Agente a WITH(NOLOCK) ON a.Agente = v.Agente where Mov = 'Orden Surtido'  and v.MovID = '" + orden + "'";
+            Cursor.Current = Cursors.WaitCursor;
+            con = new SqlConnection(cadena());            
+            SqlCommand com = new SqlCommand(consulta, con);
+            con.Open();
+            com.CommandType = System.Data.CommandType.Text;
+            SqlDataReader dr;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = com;
+            da.Fill(dt);
+            f.dgvXOrdenes.DataSource = dt;
+            f.dgvXOrdenes.Columns[0].Visible = false;
+            f.dgvXOrdenes.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 10);
+            //dr = com.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    if (!f.dgvXOrdenes.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToString(row.Cells["OrdSurt"].Value) == orden))
+            //    {
+            //        f.dgvXOrdenes.Rows.Add(dr["ID"].ToString(), dr["Orden"].ToString(), dr["Nombre"].ToString(), dr["Direccion"].ToString(), dr["Agente"].ToString(), true);
+            //    }
+            //}
+            Cursor.Current = Cursors.Default;
+            con.Close();
+        }
+
+        public void Solicitudes(FRMBuscaOrd f, string Sol)
+        {
+            string consulta = "SELECT i.ID, i.MovID AS Solicitud, u.Usuario AS Usuario, CONVERT(VARCHAR(10),i.FechaEmision,103) aS FechaEmision, i.Observaciones, cast(0 as bit) as chk FROM BigBang.dbo.Inv i with(nolock) LEFT JOIN BigBang.dbo.Usuario u with(nolock) ON i.Usuario = u.Usuario WHERE I.Mov = 'Solicitud'  and i.MovID = '" + Sol + "'";
+            Cursor.Current = Cursors.WaitCursor;
             con = new SqlConnection(cadena());
             SqlCommand com = new SqlCommand(consulta, con);
             con.Open();
             com.CommandType = System.Data.CommandType.Text;
             SqlDataReader dr;
-            dr = com.ExecuteReader();
-            while (dr.Read())
-            {
-                if (!f.dgvXOrdenes.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToString(row.Cells["OrdSurt"].Value) == orden))
-                {
-                    f.dgvXOrdenes.Rows.Add(dr["ID"].ToString(), dr["Orden"].ToString(), dr["Nombre"].ToString(), dr["Direccion"].ToString(), dr["Agente"].ToString(), true);
-                }
-            }
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            da.SelectCommand = com;
+            da.Fill(dt);
+            f.dgvXOrdenes.DataSource = dt;
+            f.dgvXOrdenes.Columns[0].Visible = false;
+            f.dgvXOrdenes.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 10);
+            //dr = com.ExecuteReader();
+            //while (dr.Read())
+            //{
+            //    if (!f.dgvXOrdenes.Rows.Cast<DataGridViewRow>().Any(row => Convert.ToString(row.Cells["OrdSurt"].Value) == orden))
+            //    {
+            //        f.dgvXOrdenes.Rows.Add(dr["ID"].ToString(), dr["Orden"].ToString(), dr["Nombre"].ToString(), dr["Direccion"].ToString(), dr["Agente"].ToString(), true);
+            //    }
+            //}
+            Cursor.Current = Cursors.Default;
             con.Close();
         }
 
-        public List<string> listaCat(int id)
+        public List<string> listaCat(int id, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
-            List<string> result = new List<string>();
-            con = new SqlConnection(cadena());
-            SqlCommand com = new SqlCommand(sp, con);
-            con.Open();
-            com.CommandType = System.Data.CommandType.StoredProcedure;
-            com.Parameters.Add("@ID", SqlDbType.Int).Value = id;
-            com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "CAT";
-            SqlDataReader dr = com.ExecuteReader();
-            while (dr.Read())
-            {
-                result.Add(dr[0].ToString());
-            }
-            con.Close();
-            dr.Close();
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+            Cursor.Current = Cursors.WaitCursor;
+                List<string> result = new List<string>();
+                con = new SqlConnection(cadena());
+                SqlCommand com = new SqlCommand(sp, con);
+                con.Open();
+                com.CommandType = System.Data.CommandType.StoredProcedure;
+                com.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+                com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "CAT";
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    result.Add(dr[0].ToString());
+                }
+                con.Close();
+                dr.Close();
+            Cursor.Current = Cursors.Default;
             return result;
 
         }
 
-        public void dgvT(ctrlGridDetalleTop top, int id)
+        public void dgvT(ctrlGridDetalleTop top, int id, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
-            con = new SqlConnection(cadena());
-            SqlCommand com = new SqlCommand(sp, con);
-            con.Open();
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.Add("@ID", SqlDbType.Int).Value = id;
-            com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "TODO";
-            com.Parameters.Add("@Filtro", SqlDbType.VarChar).Value = "TOPS";
-            SqlDataReader dr = com.ExecuteReader();
-            while (dr.Read())
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+            Cursor.Current = Cursors.WaitCursor;
+            try
             {
-                top.dgvXT2.Rows.Add(dr["ID"], dr["Articulo"], dr["descripcion1"], dr["Color"], dr["Cant1"], dr["Cant2"], dr["Cant3"], dr["Cant4"], dr["Cant5"], dr["Cant6"], dr["Cant7"], dr["Cant8"], dr["Cant9"], dr["Cant10"], dr["Cant11"], dr["Cant12"], dr["Cant13"], dr["Cant14"], dr["Cant15"], 0, dr["Cantidad"],dr["nColor"]);
+                con = new SqlConnection(cadena());
+                SqlCommand com = new SqlCommand(sp, con);
+                con.Open();
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+                com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "TODO";
+                com.Parameters.Add("@Filtro", SqlDbType.VarChar).Value = "TOPS";
+                SqlDataReader dr = com.ExecuteReader();
+                while (dr.Read())
+                {
+                    top.dgvXT2.Rows.Add(dr["ID"], dr["Articulo"], dr["descripcion1"], dr["Color"], dr["Cant1"], dr["Cant2"], dr["Cant3"], dr["Cant4"], dr["Cant5"], dr["Cant6"], dr["Cant7"], dr["Cant8"], dr["Cant9"], dr["Cant10"], dr["Cant11"], dr["Cant12"], dr["Cant13"], dr["Cant14"], dr["Cant15"], 0, dr["Cantidad"],dr["nColor"]);
+                }
+                con.Close();
+                dr.Close();
             }
-            con.Close();
-            dr.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show("error al generar id packing" + e.Message);
+            }
+            Cursor.Current = Cursors.Default;
             NotSortable(top.dgvXT2);
         }
 
-        public void dgvBC(ctrlGridDetalleBC top, int id)
+        public void dgvBC(ctrlGridDetalleBC top, int id, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+
+            Cursor.Current = Cursors.WaitCursor;
+            
             con = new SqlConnection(cadena());
             SqlCommand com = new SqlCommand(sp, con);
             con.Open();
@@ -128,12 +192,20 @@ namespace PakingBingBang
             }
             con.Close();
             dr.Close();
+            Cursor.Current = Cursors.Default;
             NotSortable(top.dataGridViewX1);
         }
 
-        public void dgvBD(ctrlGridDetalleBD top, int id)
+        public void dgvBD(ctrlGridDetalleBD top, int id, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+
+            Cursor.Current = Cursors.WaitCursor;
+            
             con = new SqlConnection(cadena());
             SqlCommand com = new SqlCommand(sp, con);
             con.Open();
@@ -148,12 +220,20 @@ namespace PakingBingBang
             }
             con.Close();
             dr.Close();
+            Cursor.Current = Cursors.Default;
             NotSortable(top.dgvXT1);
         }
 
-        public void dgvUN(ctrlGridDetalle top, int id)
+        public void dgvUN(ctrlGridDetalle top, int id, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+
+            Cursor.Current = Cursors.WaitCursor;
+            
             con = new SqlConnection(cadena());
             SqlCommand com = new SqlCommand(sp, con);
             con.Open();
@@ -166,7 +246,36 @@ namespace PakingBingBang
             {
                 top.dgvXdetalle.Rows.Add(dr["ID"], dr["Articulo"], dr["descripcion1"], dr["Color"], dr["Cant1"], dr["Cant2"], dr["Cant3"], dr["Cant4"], dr["Cant5"], dr["Cant6"], dr["Cant7"], dr["Cant8"], dr["Cant9"], dr["Cant10"], dr["Cant11"], dr["Cant12"], dr["Cant13"], dr["Cant14"], dr["Cant15"], 0, dr["Cantidad"], dr["nColor"]);
             }
+            Cursor.Current = Cursors.Default;
+            con.Close();
+            dr.Close();
 
+            NotSortable(top.dgvXdetalle);
+        }
+
+        public void dgvOTROS(ctrlGridDetalleOtros top, int id, string tipoMov)
+        {
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
+
+            Cursor.Current = Cursors.WaitCursor;
+
+            con = new SqlConnection(cadena());
+            SqlCommand com = new SqlCommand(sp, con);
+            con.Open();
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+            com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "TODO";
+            com.Parameters.Add("@Filtro", SqlDbType.VarChar).Value = "OTROS";
+            SqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                top.dgvXdetalle.Rows.Add(dr["ID"], dr["Articulo"], dr["descripcion1"], dr["Color"], dr["Cant1"], dr["Cant2"], dr["Cant3"], dr["Cant4"], dr["Cant5"], dr["Cant6"], dr["Cant7"], dr["Cant8"], dr["Cant9"], dr["Cant10"], dr["Cant11"], dr["Cant12"], dr["Cant13"], dr["Cant14"], dr["Cant15"], 0, dr["Cantidad"], dr["nColor"]);
+            }
+            Cursor.Current = Cursors.Default;
             con.Close();
             dr.Close();
 
@@ -185,7 +294,8 @@ namespace PakingBingBang
         {
             int new_id = 0;
             string sp = "SP_Packing_Insert";
-
+            Cursor.Current = Cursors.WaitCursor;
+            
             try
             {
                 con = new SqlConnection(cadena());
@@ -203,6 +313,7 @@ namespace PakingBingBang
             {
                 MessageBox.Show("error al generar id packing" + e.Message);
             }
+            Cursor.Current = Cursors.Default;
             return new_id;
 
         }
@@ -210,6 +321,8 @@ namespace PakingBingBang
         public void GeneraDetallePack(int idP, int Orden)
         {
             string sp = "SP_Packing_Insert";
+            Cursor.Current = Cursors.WaitCursor;
+            
             try
             {
                 con = new SqlConnection(cadena());
@@ -227,14 +340,20 @@ namespace PakingBingBang
             {
                 MessageBox.Show("error al generar detalle packing" + e.Message);
             }
-
+            Cursor.Current = Cursors.Default;
         }
 
-        public void InfoArticulosLineal(FRM_agregarArticulos f, int id_v, int orden, int id_pack)
+        public void InfoArticulosLineal(FRM_agregarArticulos f, int id_v, int orden, int id_pack, string tipoMov)
         {
-            string sp = "SP_Detalle_Packing";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Detalle_Packing";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Detalle_Packing_Solicitud";
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
+                
                 con = new SqlConnection(cadena());
                 SqlCommand com = new SqlCommand(sp, con);
                 con.Open();
@@ -247,22 +366,24 @@ namespace PakingBingBang
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    f.dgvArticulos.Rows.Add(dr["ID"], dr["Subcuenta"], dr["Articulo"], dr["Familia"], dr["nombre"], dr["Cantidad"], dr["Nombre"], dr["EnCaja"], dr["CODIGO"], dr["MovID"]);
+                    f.dgvArticulos.Rows.Add(dr["ID"], dr["Subcuenta"], dr["Articulo"], dr["Familia"], dr["nombre"], dr["Cantidad"], dr["Nombre"], dr["EnCaja"], dr["MovID"]);
                 }
                 dr.Close();
                 con.Close();
                 NotSortable(f.dgvArticulos);
-
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show("error al desplegar informacion de artriculos" + e.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
 
         public void DetalleDeCaja( FRM_DET_CAJAS frm , int idpack, int idcaja)
         {
-            string sp = "SP_Detalle_Packing";
+            string sp = "SP_Detalle_Packing"; // este no se condiciona con el tipo de movimiento porque la opcion no hace referencia a tablas venta o inv
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 con = new SqlConnection(cadena());
@@ -282,6 +403,7 @@ namespace PakingBingBang
             catch(Exception ex)
             {
                 MessageBox.Show("error al DetalleDeCaja" + ex.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -291,6 +413,7 @@ namespace PakingBingBang
             bool res = false;
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 con = new SqlConnection(cadena());
                 SqlCommand com = new SqlCommand(update, con);
                 con.Open();
@@ -304,11 +427,13 @@ namespace PakingBingBang
                 com.ExecuteNonQuery();
                 con.Close();
                 res = true;
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("error UpdateCaja" + ex.Message);
                 res = false;
+                Cursor.Current = Cursors.Default;
             }
             return res;
         }
@@ -319,6 +444,7 @@ namespace PakingBingBang
             string sp = "SP_Packing_Insert";
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 con = new SqlConnection(cadena());
                 SqlCommand com = new SqlCommand(sp, con);
                 con.Open();
@@ -330,10 +456,12 @@ namespace PakingBingBang
                 new_id = dr.GetInt32(0);
                 dr.Close();
                 con.Close();
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show("error al generar id caja" + e.Message);
+                Cursor.Current = Cursors.Default;
             }
             return new_id;
 
@@ -344,6 +472,7 @@ namespace PakingBingBang
             string sp = "SP_Detalle_Packing";
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 con = new SqlConnection(cadena());
                 SqlCommand com = new SqlCommand(sp, con);
                 con.Open();
@@ -360,10 +489,12 @@ namespace PakingBingBang
                     frm.cmbXModa.DisplayMember = "MODA";                    
                 }
                 con.Close();
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show("error al generar Modas" + e.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -372,6 +503,7 @@ namespace PakingBingBang
             string sp = "SP_Detalle_Packing";
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 con = new SqlConnection(cadena());
                 SqlCommand com = new SqlCommand(sp, con);
                 con.Open();
@@ -388,16 +520,19 @@ namespace PakingBingBang
                     frm.cmbXModa.DisplayMember = "MODA";
                 }
                 con.Close();
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show("error al generar Modas" + e.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
 
         public void Detalle_Caja(int idcaja, int idpacking, int idorden, string art, string subcuenta, int cantidad, int escaneos, string codigo)
         {
             string sp = "SP_Packing_DetCaja";
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 con = new SqlConnection(cadena());
@@ -414,10 +549,12 @@ namespace PakingBingBang
                 com.Parameters.Add("@Codigo", SqlDbType.VarChar).Value = codigo;
                 com.ExecuteNonQuery();
                 con.Close();
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception e)
             {
                 MessageBox.Show("error en detalle caja" + e.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
 
@@ -582,10 +719,15 @@ namespace PakingBingBang
             return res;
         }
 
-        public int GET_MOVID(int ID_VENTA)
+        public int GET_MOVID(int ID_VENTA, string tipoMov)
         {
             int new_id = 0;
-            string sp = "SP_Packing_Insert";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Packing_Insert";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Packing_Insert_Solicitud";
+
             try
             {
                 con = new SqlConnection (cadena());
@@ -684,8 +826,9 @@ namespace PakingBingBang
                     catch (Exception e)
                     {
 
-                    }                    
-                    frm.txtXtara.Text = "0.9";
+                    } 
+                    frm.txtXDim.Text = dr.GetString(0);
+                    frm.txtXtara.Text = dr.GetString(1);
                     frm.txtXPesoN.Text = dr.GetString(2);
                     frm.txtXPesoB.Text = dr.GetString(3);
                     frm.lblPbruto.Visible = true;
@@ -928,6 +1071,7 @@ namespace PakingBingBang
         {
             string sp = "SP_RepPacking";
            List<Datos> dat = new List<Datos>();
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
                 FRMReporte frm = new FRMReporte();
@@ -977,10 +1121,12 @@ namespace PakingBingBang
 
                 frm.ShowDialog();
                 con.Close();
+                Cursor.Current = Cursors.Default;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("error al GeneraReporte" + ex.Message);
+                Cursor.Current = Cursors.Default;
             }
         }
         public void CajaPendiente(int idpack, int idcaja)
@@ -1074,7 +1220,7 @@ namespace PakingBingBang
                 con.Open();
                 com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = opcion;
                 com.Parameters.Add("@DESDE", SqlDbType.VarChar).Value = desde;
-                com.Parameters.Add("@HASTA", SqlDbType.VarChar).Value = hasta ;
+                com.Parameters.Add("@HASTA", SqlDbType.VarChar).Value = hasta;
                 com.Parameters.Add("@ID", SqlDbType.VarChar).Value = idpack;
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
@@ -1102,7 +1248,7 @@ namespace PakingBingBang
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    frm.dgvArticulos.Rows.Add(dr["Id_Packing"], dr["Fecha_Creacion"],dr["Precin"]);
+                    frm.dgvArticulos.Rows.Add(dr["Id_Packing"], dr["mov"], dr["Fecha_Creacion"],dr["Precin"]);
                 }
                 con.Close();
 
@@ -1113,9 +1259,14 @@ namespace PakingBingBang
             }
         }
 
-        public Dictionary<int, string> ListaOrden (int idpack)
+        public Dictionary<int, string> ListaOrden (int idpack, string tipoMov)
         {
-            string sp = "SP_Packing_Insert";
+            string sp = "";
+            if (tipoMov == "Orden Surtido")
+                sp = "SP_Packing_Insert";
+            else if (tipoMov == "Solicitud")
+                sp = "SP_Packing_Insert_Solicitud";
+
             Dictionary<int, string> ordenes = new Dictionary<int, string>();
             try
             {
@@ -1212,5 +1363,88 @@ namespace PakingBingBang
             return ret;
         }
 
+        public bool verificarCB(string cb ,  string art, string subcuenta)
+        {
+            bool res = false;
+            string sp = "SP_Packing_ComparaCB";
+
+            try
+            {
+                con = new SqlConnection(cadena());
+                SqlCommand com = new SqlCommand(sp, con);
+                con.Open();
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@CB", SqlDbType.VarChar).Value = cb;
+                com.Parameters.Add("@ARTICULO", SqlDbType.VarChar).Value = art;
+                com.Parameters.Add("@SUBCUENTA", SqlDbType.VarChar).Value = subcuenta;
+                SqlDataReader dr = com.ExecuteReader();
+                dr.Read();
+                
+                if (dr.GetInt32(0) == 1)
+                    res = true;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error al terminarPack" + ex.Message);
+            }
+            return res;
+        }
+        //public string SetTara (int id)
+        //{
+        //    //string ret = "";
+        //    //try
+        //    //{
+        //    //    con = new SqlConnection(cadena());
+        //    //    SqlCommand com = new SqlCommand(sp, con);
+        //    //    con.Open();
+        //    //    com.CommandType = CommandType.StoredProcedure;
+        //    //    com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "LISTA_ORD";
+        //    //    com.Parameters.Add("@ID", SqlDbType.Int).Value = idpack;
+        //    //    com.Parameters.Add("@ORDEN", SqlDbType.Int).Value = caja;
+        //    //    SqlDataReader dr = com.ExecuteReader();
+        //    //    while (dr.Read())
+        //    //    {
+        //    //        ret.Add(dr.GetInt32(0));
+        //    //    }
+
+        //    //    con.Close();
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    MessageBox.Show("error al terminarPack" + ex.Message);
+        //    //}
+
+        //    //return ret;
+        //}
+
+        public bool existe_cb (string art , string sub)
+        {
+
+            bool res = false;
+            string sp = "SP_Packing_Insert";
+
+            try
+            {
+                con = new SqlConnection(cadena());
+                SqlCommand com = new SqlCommand(sp, con);
+                con.Open();
+                com.CommandType = CommandType.StoredProcedure;
+                com.Parameters.Add("@opcion", SqlDbType.VarChar).Value = "EXISTE_CODIGO";
+                com.Parameters.Add("@PRE_CINTO", SqlDbType.VarChar).Value = sub;
+                com.Parameters.Add("@ART", SqlDbType.VarChar).Value = art;
+                SqlDataReader dr = com.ExecuteReader();
+                dr.Read();
+
+                if (dr.GetInt32(0) == 1)
+                    res = true;
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error al terminarPack" + ex.Message);
+            }
+            return res;
+        }
     }
 }
