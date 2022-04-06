@@ -28,18 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRM_agregarArticulos));
             this.dgvArticulos = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,10 +49,10 @@
             this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Talla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EnCaja = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quitar = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.pnlBox = new DevComponents.DotNetBar.PanelEx();
+            this.btnXVerCaja = new DevComponents.DotNetBar.ButtonX();
             this.lblXnCaja = new DevComponents.DotNetBar.LabelX();
             this.lblXnCajas = new DevComponents.DotNetBar.LabelX();
             this.lblNUmero = new DevComponents.DotNetBar.LabelX();
@@ -62,16 +61,15 @@
             this.txtXCodigo = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.txtXNum = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.pnlXModa = new DevComponents.DotNetBar.PanelEx();
+            this.btnXCinto = new DevComponents.DotNetBar.ButtonX();
+            this.txtBtnXCinto = new DevComponents.DotNetBar.TextBoxItem();
             this.lblXModa = new DevComponents.DotNetBar.LabelX();
             this.cmbXModa = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.lblXorden = new DevComponents.DotNetBar.LabelX();
             this.btnXPend = new DevComponents.DotNetBar.ButtonX();
-            this.btnXCinto = new DevComponents.DotNetBar.ButtonX();
-            this.txtBtnXCinto = new DevComponents.DotNetBar.TextBoxItem();
             this.btnXCancel = new DevComponents.DotNetBar.ButtonX();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.btnXAdd = new DevComponents.DotNetBar.ButtonX();
-            this.btnXVerCaja = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.pnlBox.SuspendLayout();
             this.pnlXModa.SuspendLayout();
@@ -81,14 +79,14 @@
             // 
             this.dgvArticulos.AllowUserToAddRows = false;
             this.dgvArticulos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
@@ -99,17 +97,16 @@
             this.Cantidad,
             this.Talla,
             this.EnCaja,
-            this.Codigo,
             this.MovID,
             this.Quitar});
-            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvArticulos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvArticulos.Location = new System.Drawing.Point(2, 88);
             this.dgvArticulos.Name = "dgvArticulos";
@@ -117,6 +114,8 @@
             this.dgvArticulos.Size = new System.Drawing.Size(536, 404);
             this.dgvArticulos.TabIndex = 0;
             this.dgvArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellClick);
+            this.dgvArticulos.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellEndEdit);
+            this.dgvArticulos.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellEnter);
             this.dgvArticulos.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvArticulos_RowsAdded);
             // 
             // ID
@@ -128,8 +127,8 @@
             // 
             // SUBCUENTA
             // 
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SUBCUENTA.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SUBCUENTA.DefaultCellStyle = dataGridViewCellStyle2;
             this.SUBCUENTA.HeaderText = "SUBCUENTA";
             this.SUBCUENTA.Name = "SUBCUENTA";
             this.SUBCUENTA.ReadOnly = true;
@@ -137,8 +136,8 @@
             // 
             // Articulo
             // 
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Articulo.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Articulo.DefaultCellStyle = dataGridViewCellStyle3;
             this.Articulo.HeaderText = "Articulo";
             this.Articulo.MaxInputLength = 100;
             this.Articulo.Name = "Articulo";
@@ -147,8 +146,8 @@
             // 
             // Estilo
             // 
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Estilo.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Estilo.DefaultCellStyle = dataGridViewCellStyle4;
             this.Estilo.HeaderText = "Estilo";
             this.Estilo.MaxInputLength = 100;
             this.Estilo.Name = "Estilo";
@@ -157,8 +156,8 @@
             // 
             // Color
             // 
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Color.DefaultCellStyle = dataGridViewCellStyle5;
             this.Color.HeaderText = "Color";
             this.Color.MaxInputLength = 100;
             this.Color.Name = "Color";
@@ -167,8 +166,8 @@
             // 
             // Cantidad
             // 
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cantidad.DefaultCellStyle = dataGridViewCellStyle6;
             this.Cantidad.HeaderText = "Cantidad";
             this.Cantidad.MaxInputLength = 10;
             this.Cantidad.Name = "Cantidad";
@@ -177,8 +176,8 @@
             // 
             // Talla
             // 
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Talla.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Talla.DefaultCellStyle = dataGridViewCellStyle7;
             this.Talla.HeaderText = "Talla";
             this.Talla.MaxInputLength = 10;
             this.Talla.Name = "Talla";
@@ -187,26 +186,17 @@
             // 
             // EnCaja
             // 
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnCaja.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnCaja.DefaultCellStyle = dataGridViewCellStyle8;
             this.EnCaja.HeaderText = "En Caja";
             this.EnCaja.Name = "EnCaja";
             this.EnCaja.ReadOnly = true;
             this.EnCaja.Width = 70;
             // 
-            // Codigo
-            // 
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Codigo.DefaultCellStyle = dataGridViewCellStyle33;
-            this.Codigo.HeaderText = "Codigo";
-            this.Codigo.Name = "Codigo";
-            this.Codigo.ReadOnly = true;
-            this.Codigo.Visible = false;
-            // 
             // MovID
             // 
-            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MovID.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovID.DefaultCellStyle = dataGridViewCellStyle9;
             this.MovID.HeaderText = "MovID";
             this.MovID.Name = "MovID";
             this.MovID.ReadOnly = true;
@@ -214,9 +204,9 @@
             // 
             // Quitar
             // 
-            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle35.ForeColor = System.Drawing.Color.Red;
-            this.Quitar.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Red;
+            this.Quitar.DefaultCellStyle = dataGridViewCellStyle10;
             this.Quitar.HeaderText = "Quitar de caja";
             this.Quitar.Name = "Quitar";
             this.Quitar.ReadOnly = true;
@@ -253,12 +243,25 @@
             this.pnlBox.Tag = "                          ";
             this.pnlBox.Click += new System.EventHandler(this.pnlBox_Click);
             // 
+            // btnXVerCaja
+            // 
+            this.btnXVerCaja.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXVerCaja.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnXVerCaja.Image = global::PakingBingBang.Properties.Resources.box;
+            this.btnXVerCaja.ImagePosition = DevComponents.DotNetBar.eImagePosition.Bottom;
+            this.btnXVerCaja.ImageTextSpacing = -20;
+            this.btnXVerCaja.Location = new System.Drawing.Point(36, 35);
+            this.btnXVerCaja.Name = "btnXVerCaja";
+            this.btnXVerCaja.Size = new System.Drawing.Size(152, 123);
+            this.btnXVerCaja.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnXVerCaja.TabIndex = 7;
+            this.btnXVerCaja.Click += new System.EventHandler(this.buttonX1_Click);
+            // 
             // lblXnCaja
             // 
             // 
             // 
             // 
-            this.lblXnCaja.BackgroundStyle.Class = "";
             this.lblXnCaja.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblXnCaja.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXnCaja.Location = new System.Drawing.Point(145, 3);
@@ -274,7 +277,6 @@
             // 
             // 
             // 
-            this.lblXnCajas.BackgroundStyle.Class = "";
             this.lblXnCajas.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblXnCajas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXnCajas.Location = new System.Drawing.Point(15, 3);
@@ -289,7 +291,6 @@
             // 
             // 
             // 
-            this.lblNUmero.BackgroundStyle.Class = "";
             this.lblNUmero.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblNUmero.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNUmero.Location = new System.Drawing.Point(61, 224);
@@ -304,7 +305,6 @@
             // 
             // 
             // 
-            this.lblCant.BackgroundStyle.Class = "";
             this.lblCant.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblCant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCant.Location = new System.Drawing.Point(43, 189);
@@ -319,7 +319,6 @@
             // 
             // 
             // 
-            this.swbtnAbrir.BackgroundStyle.Class = "";
             this.swbtnAbrir.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.swbtnAbrir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.swbtnAbrir.Location = new System.Drawing.Point(51, 164);
@@ -397,71 +396,6 @@
             this.pnlXModa.Style.GradientAngle = 90;
             this.pnlXModa.TabIndex = 16;
             // 
-            // lblXModa
-            // 
-            // 
-            // 
-            // 
-            this.lblXModa.BackgroundStyle.Class = "";
-            this.lblXModa.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblXModa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblXModa.Location = new System.Drawing.Point(51, 4);
-            this.lblXModa.Name = "lblXModa";
-            this.lblXModa.Size = new System.Drawing.Size(107, 23);
-            this.lblXModa.TabIndex = 11;
-            this.lblXModa.Text = "Moda Caja";
-            this.lblXModa.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // cmbXModa
-            // 
-            this.cmbXModa.DisplayMember = "Text";
-            this.cmbXModa.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbXModa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbXModa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbXModa.FormattingEnabled = true;
-            this.cmbXModa.ItemHeight = 20;
-            this.cmbXModa.Location = new System.Drawing.Point(16, 32);
-            this.cmbXModa.Name = "cmbXModa";
-            this.cmbXModa.Size = new System.Drawing.Size(187, 26);
-            this.cmbXModa.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cmbXModa.TabIndex = 10;
-            this.cmbXModa.SelectedIndexChanged += new System.EventHandler(this.cmbXModa_SelectedIndexChanged);
-            this.cmbXModa.SelectionChangeCommitted += new System.EventHandler(this.cmbXModa_SelectionChangeCommitted);
-            // 
-            // lblXorden
-            // 
-            // 
-            // 
-            // 
-            this.lblXorden.BackgroundStyle.Class = "";
-            this.lblXorden.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lblXorden.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblXorden.Location = new System.Drawing.Point(2, 3);
-            this.lblXorden.Name = "lblXorden";
-            this.lblXorden.Size = new System.Drawing.Size(194, 25);
-            this.lblXorden.TabIndex = 17;
-            this.lblXorden.Text = ".";
-            // 
-            // btnXPend
-            // 
-            this.btnXPend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnXPend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnXPend.Enabled = false;
-            this.btnXPend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXPend.HoverImage = global::PakingBingBang.Properties.Resources.pausa1;
-            this.btnXPend.Image = global::PakingBingBang.Properties.Resources.pausa;
-            this.btnXPend.ImageFixedSize = new System.Drawing.Size(55, 55);
-            this.btnXPend.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
-            this.btnXPend.ImageTextSpacing = -10;
-            this.btnXPend.Location = new System.Drawing.Point(264, 34);
-            this.btnXPend.Name = "btnXPend";
-            this.btnXPend.Size = new System.Drawing.Size(140, 48);
-            this.btnXPend.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnXPend.TabIndex = 18;
-            this.btnXPend.Text = "Caja Pendiente";
-            this.btnXPend.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Right;
-            this.btnXPend.Click += new System.EventHandler(this.btnXPend_Click);
-            // 
             // btnXCinto
             // 
             this.btnXCinto.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -494,6 +428,69 @@
             this.txtBtnXCinto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBtnXCinto_KeyDown);
             this.txtBtnXCinto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBtnXCinto_KeyPress);
             this.txtBtnXCinto.TextChanged += new System.EventHandler(this.txtBtnXCinto_TextChanged);
+            // 
+            // lblXModa
+            // 
+            // 
+            // 
+            // 
+            this.lblXModa.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblXModa.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblXModa.Location = new System.Drawing.Point(51, 4);
+            this.lblXModa.Name = "lblXModa";
+            this.lblXModa.Size = new System.Drawing.Size(107, 23);
+            this.lblXModa.TabIndex = 11;
+            this.lblXModa.Text = "Moda Caja";
+            this.lblXModa.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // cmbXModa
+            // 
+            this.cmbXModa.DisplayMember = "Text";
+            this.cmbXModa.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbXModa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbXModa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbXModa.FormattingEnabled = true;
+            this.cmbXModa.ItemHeight = 20;
+            this.cmbXModa.Location = new System.Drawing.Point(16, 32);
+            this.cmbXModa.Name = "cmbXModa";
+            this.cmbXModa.Size = new System.Drawing.Size(187, 26);
+            this.cmbXModa.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cmbXModa.TabIndex = 10;
+            this.cmbXModa.SelectedIndexChanged += new System.EventHandler(this.cmbXModa_SelectedIndexChanged);
+            this.cmbXModa.SelectionChangeCommitted += new System.EventHandler(this.cmbXModa_SelectionChangeCommitted);
+            // 
+            // lblXorden
+            // 
+            // 
+            // 
+            // 
+            this.lblXorden.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lblXorden.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblXorden.Location = new System.Drawing.Point(2, 3);
+            this.lblXorden.Name = "lblXorden";
+            this.lblXorden.Size = new System.Drawing.Size(194, 25);
+            this.lblXorden.TabIndex = 17;
+            this.lblXorden.Text = ".";
+            // 
+            // btnXPend
+            // 
+            this.btnXPend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXPend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnXPend.Enabled = false;
+            this.btnXPend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXPend.HoverImage = global::PakingBingBang.Properties.Resources.pausa1;
+            this.btnXPend.Image = global::PakingBingBang.Properties.Resources.pausa;
+            this.btnXPend.ImageFixedSize = new System.Drawing.Size(55, 55);
+            this.btnXPend.ImagePosition = DevComponents.DotNetBar.eImagePosition.Right;
+            this.btnXPend.ImageTextSpacing = -10;
+            this.btnXPend.Location = new System.Drawing.Point(264, 34);
+            this.btnXPend.Name = "btnXPend";
+            this.btnXPend.Size = new System.Drawing.Size(140, 48);
+            this.btnXPend.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnXPend.TabIndex = 18;
+            this.btnXPend.Text = "Caja Pendiente";
+            this.btnXPend.TextAlignment = DevComponents.DotNetBar.eButtonTextAlignment.Right;
+            this.btnXPend.Click += new System.EventHandler(this.btnXPend_Click);
             // 
             // btnXCancel
             // 
@@ -550,20 +547,6 @@
             this.btnXAdd.Tooltip = "Buscar y Agregar";
             this.btnXAdd.Click += new System.EventHandler(this.btnXAdd_Click);
             // 
-            // btnXVerCaja
-            // 
-            this.btnXVerCaja.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnXVerCaja.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnXVerCaja.Image = global::PakingBingBang.Properties.Resources.box;
-            this.btnXVerCaja.ImagePosition = DevComponents.DotNetBar.eImagePosition.Bottom;
-            this.btnXVerCaja.ImageTextSpacing = -20;
-            this.btnXVerCaja.Location = new System.Drawing.Point(36, 35);
-            this.btnXVerCaja.Name = "btnXVerCaja";
-            this.btnXVerCaja.Size = new System.Drawing.Size(152, 123);
-            this.btnXVerCaja.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnXVerCaja.TabIndex = 7;
-            this.btnXVerCaja.Click += new System.EventHandler(this.buttonX1_Click);
-            // 
             // FRM_agregarArticulos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,6 +596,8 @@
         public DevComponents.DotNetBar.Controls.ComboBoxEx cmbXModa;
         private DevComponents.DotNetBar.ButtonX btnXCinto;
         private DevComponents.DotNetBar.TextBoxItem txtBtnXCinto;
+        public DevComponents.DotNetBar.LabelX lblXorden;
+        private DevComponents.DotNetBar.ButtonX btnXPend;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn SUBCUENTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn Articulo;
@@ -621,10 +606,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Talla;
         private System.Windows.Forms.DataGridViewTextBoxColumn EnCaja;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn MovID;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn Quitar;
-        public DevComponents.DotNetBar.LabelX lblXorden;
-        private DevComponents.DotNetBar.ButtonX btnXPend;
     }
 }

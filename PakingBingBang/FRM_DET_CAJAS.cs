@@ -38,11 +38,11 @@ namespace PakingBingBang
 
         private void btnXSave_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(cmbXModa.Text))
-            {
-                MessageBox.Show("Falta capturar dimenciones");
-                return;
-            }
+            //if (String.IsNullOrEmpty(cmbXModa.Text))
+            //{
+            //    MessageBox.Show("Falta capturar dimenciones");
+            //    return;
+            //}
             
             if (String.IsNullOrEmpty(txtXPesoB.Text))
             {
@@ -103,6 +103,7 @@ namespace PakingBingBang
                 MessageBox.Show("el formato es incorrecto");
                 txt.Text = String.Empty;
             }
+
         }
 
         private void txtXPesoB_KeyPress(object sender, KeyPressEventArgs e)
@@ -203,6 +204,11 @@ namespace PakingBingBang
             }
             else
                 e.Cancel = true;
+        }
+
+        private void cmbXModa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

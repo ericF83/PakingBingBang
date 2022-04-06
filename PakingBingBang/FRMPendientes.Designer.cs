@@ -30,13 +30,14 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvArticulos = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estilo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Detalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estilo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mov = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArticulos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
+            this.Mov,
             this.Estilo,
             this.Detalle});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -70,19 +72,19 @@
             this.dgvArticulos.Location = new System.Drawing.Point(0, 0);
             this.dgvArticulos.Name = "dgvArticulos";
             this.dgvArticulos.ReadOnly = true;
-            this.dgvArticulos.Size = new System.Drawing.Size(629, 318);
+            this.dgvArticulos.Size = new System.Drawing.Size(837, 318);
             this.dgvArticulos.TabIndex = 6;
             this.dgvArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellClick);
+            this.dgvArticulos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellDoubleClick);
             // 
-            // ID
+            // Detalle
             // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ID.HeaderText = "ID";
-            this.ID.MaxInputLength = 100;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 80;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Detalle.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Detalle.HeaderText = "DETALLE";
+            this.Detalle.Name = "Detalle";
+            this.Detalle.ReadOnly = true;
+            this.Detalle.Width = 300;
             // 
             // Estilo
             // 
@@ -94,20 +96,27 @@
             this.Estilo.ReadOnly = true;
             this.Estilo.Width = 150;
             // 
-            // Detalle
+            // Mov
             // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Detalle.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Detalle.HeaderText = "DETALLE";
-            this.Detalle.Name = "Detalle";
-            this.Detalle.ReadOnly = true;
-            this.Detalle.Width = 300;
+            this.Mov.HeaderText = "Mov";
+            this.Mov.Name = "Mov";
+            this.Mov.ReadOnly = true;
+            // 
+            // ID
+            // 
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ID.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ID.HeaderText = "ID";
+            this.ID.MaxInputLength = 100;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 80;
             // 
             // FRMPendientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 318);
+            this.ClientSize = new System.Drawing.Size(837, 318);
             this.Controls.Add(this.dgvArticulos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FRMPendientes";
@@ -121,6 +130,7 @@
         #endregion
         public DevComponents.DotNetBar.Controls.DataGridViewX dgvArticulos;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mov;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estilo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Detalle;
     }

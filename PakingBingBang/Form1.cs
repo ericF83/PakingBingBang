@@ -18,11 +18,23 @@ namespace PakingBingBang
         public FRMprincipal prins = new FRMprincipal();
         public bool esPendiente = false;
         FRMPacking Frmpack;
+        string tipoMov = "";
+        public string TipoMov
+        {
+            set { tipoMov = value.ToString(); }
+        }
+
         public FRMBuscaOrd(FRMprincipal Prins)
         {
             InitializeComponent();
             this.prins = Prins;
 
+        }
+
+        public FRMBuscaOrd()
+        {
+            InitializeComponent();
+            
         }
 
         public FRMBuscaOrd( bool esPend, FRMPacking frm, int idpack)
@@ -38,8 +50,13 @@ namespace PakingBingBang
         {
             //Preview pre = new Preview();
             //pre.datosgrid(this);
+            FRMOrdenOrPedido ordPed = new FRMOrdenOrPedido(this);
+            ordPed.ShowDialog();
             Conexion con = new Conexion();
-            con.Ordenes(this, txtXOrd.Text);
+            if (tipoMov == "Orden Surtido")
+                con.Ordenes(this, txtXOrd.Text);
+            else if (tipoMov == "Solicitud")
+                con.Solicitudes(this, txtXOrd.Text);
             txtXOrd.Text = "";
 
         }
@@ -54,8 +71,8 @@ namespace PakingBingBang
                 if (dgvXOrdenes.Rows.Count > 0)
                     foreach (DataGridViewRow row in dgvXOrdenes.Rows)
                     {
-                        if (Convert.ToBoolean(row.Cells["Checking"].Value))
-                            ordenes.Add(Convert.ToInt32( row.Cells["ID"].Value), row.Cells["OrdSurt"].Value.ToString());
+                        if (Convert.ToBoolean(row.Cells["chk"].Value))
+                            ordenes.Add(Convert.ToInt32( row.Cells["ID"].Value), row.Cells[1].Value.ToString());
                     }
 
 
@@ -71,7 +88,7 @@ namespace PakingBingBang
                 if (!Open) // si falso: no esta abierto, inicializa el tab y muestra el form
                 {
                     ID_packing = conex.GeneraIDpacking();
-                    F = new FRMPacking(false);
+                    F = new FRMPacking(false, tipoMov);
                     F.AgregarTap(ordenes, ID_packing);
                     F.Show();
                     //F.BringToFront();
@@ -102,7 +119,7 @@ namespace PakingBingBang
                     this.Visible = false;                   
                 }
 
-                dgvXOrdenes.Rows.Clear();
+                dgvXOrdenes.DataSource = null;
             }          
 
 
