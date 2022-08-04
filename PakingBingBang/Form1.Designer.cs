@@ -29,24 +29,14 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FRMBuscaOrd));
             this.gpBuscar = new DevComponents.DotNetBar.Controls.GroupPanel();
-            this.dgvXOrdenes = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrdSurt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cte = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dir = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ejecutivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Checking = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.txtXOrd = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.btnGeneraP = new DevComponents.DotNetBar.ButtonX();
+            this.dgvXOrdenes = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.btnXAdd = new DevComponents.DotNetBar.ButtonX();
+            this.txtXOrd = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.gpBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvXOrdenes)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +86,23 @@
             this.gpBuscar.TabIndex = 6;
             this.gpBuscar.Text = "Buscar y Agregar Orden Surtido";
             // 
+            // btnGeneraP
+            // 
+            this.btnGeneraP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnGeneraP.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
+            this.btnGeneraP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGeneraP.HoverImage = global::PakingBingBang.Properties.Resources.packW;
+            this.btnGeneraP.Image = global::PakingBingBang.Properties.Resources.packB;
+            this.btnGeneraP.ImageFixedSize = new System.Drawing.Size(70, 70);
+            this.btnGeneraP.Location = new System.Drawing.Point(733, 305);
+            this.btnGeneraP.Name = "btnGeneraP";
+            this.btnGeneraP.Size = new System.Drawing.Size(213, 66);
+            this.btnGeneraP.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.btnGeneraP.TabIndex = 11;
+            this.btnGeneraP.Text = "Generar Packing";
+            this.btnGeneraP.Tooltip = "F5";
+            this.btnGeneraP.Click += new System.EventHandler(this.btn_Click);
+            // 
             // dgvXOrdenes
             // 
             this.dgvXOrdenes.AllowUserToAddRows = false;
@@ -109,92 +116,44 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvXOrdenes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvXOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvXOrdenes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.OrdSurt,
-            this.cte,
-            this.Dir,
-            this.Ejecutivo,
-            this.Checking});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvXOrdenes.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvXOrdenes.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvXOrdenes.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvXOrdenes.Location = new System.Drawing.Point(3, 66);
             this.dgvXOrdenes.Name = "dgvXOrdenes";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvXOrdenes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvXOrdenes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvXOrdenes.Size = new System.Drawing.Size(943, 233);
             this.dgvXOrdenes.TabIndex = 10;
             this.dgvXOrdenes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXOrd_KeyDown);
             // 
-            // ID
+            // btnXAdd
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.MaxInputLength = 10;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // OrdSurt
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OrdSurt.DefaultCellStyle = dataGridViewCellStyle2;
-            this.OrdSurt.HeaderText = "Orden Surtido";
-            this.OrdSurt.MaxInputLength = 10;
-            this.OrdSurt.Name = "OrdSurt";
-            this.OrdSurt.ReadOnly = true;
-            // 
-            // cte
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cte.DefaultCellStyle = dataGridViewCellStyle3;
-            this.cte.HeaderText = "Cliente";
-            this.cte.MaxInputLength = 200;
-            this.cte.Name = "cte";
-            this.cte.ReadOnly = true;
-            this.cte.Width = 300;
-            // 
-            // Dir
-            // 
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dir.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Dir.HeaderText = "Direccion";
-            this.Dir.MaxInputLength = 200;
-            this.Dir.Name = "Dir";
-            this.Dir.ReadOnly = true;
-            this.Dir.Width = 250;
-            // 
-            // Ejecutivo
-            // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ejecutivo.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Ejecutivo.HeaderText = "Ejecutivo";
-            this.Ejecutivo.MaxInputLength = 200;
-            this.Ejecutivo.Name = "Ejecutivo";
-            this.Ejecutivo.ReadOnly = true;
-            this.Ejecutivo.Width = 200;
-            // 
-            // Checking
-            // 
-            this.Checking.Checked = true;
-            this.Checking.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.Checking.CheckValue = "N";
-            this.Checking.HeaderText = "";
-            this.Checking.Name = "Checking";
-            this.Checking.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Checking.Width = 50;
+            this.btnXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
+            this.btnXAdd.HoverImage = global::PakingBingBang.Properties.Resources.findW;
+            this.btnXAdd.Image = global::PakingBingBang.Properties.Resources.findB;
+            this.btnXAdd.ImageFixedSize = new System.Drawing.Size(70, 70);
+            this.btnXAdd.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
+            this.btnXAdd.Location = new System.Drawing.Point(216, 10);
+            this.btnXAdd.Name = "btnXAdd";
+            this.btnXAdd.Size = new System.Drawing.Size(76, 44);
+            this.btnXAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.btnXAdd.TabIndex = 9;
+            this.btnXAdd.Tooltip = "Buscar Orden de Pedido";
+            this.btnXAdd.Click += new System.EventHandler(this.btnXAdd_Click);
             // 
             // txtXOrd
             // 
@@ -215,39 +174,6 @@
             this.txtXOrd.WatermarkText = "Numero de Orden";
             this.txtXOrd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXOrd_KeyDown);
             this.txtXOrd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtXOrd_KeyPress);
-            // 
-            // btnGeneraP
-            // 
-            this.btnGeneraP.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnGeneraP.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnGeneraP.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGeneraP.HoverImage = global::PakingBingBang.Properties.Resources.packW;
-            this.btnGeneraP.Image = global::PakingBingBang.Properties.Resources.packB;
-            this.btnGeneraP.ImageFixedSize = new System.Drawing.Size(70, 70);
-            this.btnGeneraP.Location = new System.Drawing.Point(733, 305);
-            this.btnGeneraP.Name = "btnGeneraP";
-            this.btnGeneraP.Size = new System.Drawing.Size(213, 66);
-            this.btnGeneraP.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.btnGeneraP.TabIndex = 11;
-            this.btnGeneraP.Text = "Generar Packing";
-            this.btnGeneraP.Tooltip = "F5";
-            this.btnGeneraP.Click += new System.EventHandler(this.btn_Click);
-            // 
-            // btnXAdd
-            // 
-            this.btnXAdd.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnXAdd.ColorTable = DevComponents.DotNetBar.eButtonColor.MagentaWithBackground;
-            this.btnXAdd.HoverImage = global::PakingBingBang.Properties.Resources.findW;
-            this.btnXAdd.Image = global::PakingBingBang.Properties.Resources.findB;
-            this.btnXAdd.ImageFixedSize = new System.Drawing.Size(70, 70);
-            this.btnXAdd.ImagePosition = DevComponents.DotNetBar.eImagePosition.Top;
-            this.btnXAdd.Location = new System.Drawing.Point(216, 10);
-            this.btnXAdd.Name = "btnXAdd";
-            this.btnXAdd.Size = new System.Drawing.Size(76, 44);
-            this.btnXAdd.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
-            this.btnXAdd.TabIndex = 9;
-            this.btnXAdd.Tooltip = "Buscar Orden de Pedido";
-            this.btnXAdd.Click += new System.EventHandler(this.btnXAdd_Click);
             // 
             // FRMBuscaOrd
             // 
@@ -276,11 +202,5 @@
         private DevComponents.DotNetBar.ButtonX btnXAdd;
         private DevComponents.DotNetBar.Controls.TextBoxX txtXOrd;
         private DevComponents.DotNetBar.ButtonX btnGeneraP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrdSurt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Dir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ejecutivo;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn Checking;
     }
 }

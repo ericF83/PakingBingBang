@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.RpPacking = new Microsoft.Reporting.WinForms.ReportViewer();
             this.DatosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RpPacking = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.DatosBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // DatosBindingSource
+            // 
+            this.DatosBindingSource.DataSource = typeof(PakingBingBang.Datos);
             // 
             // RpPacking
             // 
@@ -44,19 +48,16 @@
             this.RpPacking.LocalReport.ReportEmbeddedResource = "PakingBingBang.Report.rdlc";
             this.RpPacking.Location = new System.Drawing.Point(0, 0);
             this.RpPacking.Name = "RpPacking";
-            this.RpPacking.Size = new System.Drawing.Size(1191, 603);
+            this.RpPacking.Size = new System.Drawing.Size(1337, 603);
             this.RpPacking.TabIndex = 0;
+            this.RpPacking.ReportExport += new Microsoft.Reporting.WinForms.ExportEventHandler(this.RpPacking_ReportExport);
             this.RpPacking.Print += new Microsoft.Reporting.WinForms.ReportPrintEventHandler(this.RpPacking_Print);
-            // 
-            // DatosBindingSource
-            // 
-            this.DatosBindingSource.DataSource = typeof(PakingBingBang.Datos);
             // 
             // FRMReporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1191, 603);
+            this.ClientSize = new System.Drawing.Size(1337, 603);
             this.Controls.Add(this.RpPacking);
             this.Name = "FRMReporte";
             this.Text = "FRMReporte";

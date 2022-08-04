@@ -26,10 +26,25 @@ namespace PakingBingBang
 
         private void dgvArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Dictionary<int, string> ordenes = new Dictionary<int, string>();
+            //int idpack = (int)(dgvArticulos.Rows[e.RowIndex].Cells["ID"].Value);
+            //ordenes = conex.ListaOrden(idpack);
+            //FRMPacking F = new FRMPacking(true);
+            //F.AgregarTap(ordenes, idpack);
+            //F.TopLevel = false;
+            //F.StartPosition = FormStartPosition.CenterScreen;
+            //F.Parent = Frm.PnlPrincipal;
+            //F.Show();
+            //F.BringToFront();
+        }
+
+        private void dgvArticulos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
             Dictionary<int, string> ordenes = new Dictionary<int, string>();
             int idpack = (int)(dgvArticulos.Rows[e.RowIndex].Cells["ID"].Value);
-            ordenes = conex.ListaOrden(idpack);
-            FRMPacking F = new FRMPacking(true);
+            string tipoMov = (dgvArticulos.Rows[e.RowIndex].Cells["Mov"].Value.ToString());
+            ordenes = conex.ListaOrden(idpack, tipoMov);
+            FRMPacking F = new FRMPacking(true,tipoMov);
             F.AgregarTap(ordenes, idpack);
             F.TopLevel = false;
             F.StartPosition = FormStartPosition.CenterScreen;
