@@ -35,18 +35,18 @@ namespace PakingBingBang
             lblXorden.Text = "Orden " + Convert.ToString(this.id_orden);
         }
 
-        private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txtXNum.Text != "")
-                    buscarYeliminar(txtXCodigo.Text);
-                else
-                    buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
-                txtXCodigo.Text = String.Empty;
-            }
+        //private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Enter)
+        //    {
+        //        if (txtXNum.Text != "")
+        //            buscarYeliminar(txtXCodigo.Text);
+        //        else
+        //            buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
+        //        txtXCodigo.Text = String.Empty;
+        //    }
                 
-        }
+        //}
 
         private void buscarYeliminar(string codigo)
         {
@@ -195,7 +195,7 @@ namespace PakingBingBang
 
             if(Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value) > 0)
             {
-                dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.ForeColor = System.Drawing.Color.Red;
+                dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.ForeColor = System.Drawing.Color.Blue;
                 Font font = new Font("Arial", 10.0f, FontStyle.Bold);
                 dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.Font = font;
             }
@@ -228,10 +228,10 @@ namespace PakingBingBang
 
         private void btnXAdd_Click(object sender, EventArgs e)
         {
-            if (txtXNum.Text == "")
+            //if (txtXNum.Text == "")
                 buscarYeliminar(txtXCodigo.Text);
-            else
-                buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
+            //else
+            //    buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
             txtXCodigo.Text = String.Empty;
             txtXCodigo.Focus();
         }
@@ -450,20 +450,20 @@ namespace PakingBingBang
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtXNum.Text == "")
+                //if (txtXNum.Text == "")
                     buscarYeliminar(txtXCodigo.Text);
-                else
-                    buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
+                //else
+                    //buscarYeliminarF1(txtXCodigo.Text, Convert.ToInt32(txtXNum.Text));
                 txtXCodigo.Text = String.Empty;
                 txtXNum.Visible = false;
             }
+            // esta if es para habilitar el txt para evitar escanear y poner la cantidad directamente
+            //if (e.KeyCode == Keys.F2)
+            //{
+            //    txtXNum.Visible = true;
+            //    txtXNum.Focus();
 
-            if (e.KeyCode == Keys.F2)
-            {
-                txtXNum.Visible = true;
-                txtXNum.Focus();
-
-            }
+            //}
         }
 
         private void txtXNum_KeyPress(object sender, KeyPressEventArgs e)
@@ -579,7 +579,7 @@ namespace PakingBingBang
                     else
                     {
                         dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value = Convert.ToInt32(dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Value);
-                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.ForeColor = System.Drawing.Color.Red;
+                        dgvArticulos.Rows[e.RowIndex].Cells["EnCaja"].Style.ForeColor = System.Drawing.Color.Blue;
                         dgvArticulos.Rows[e.RowIndex].Selected = true;
                         dgvArticulos.FirstDisplayedScrollingRowIndex = dgvArticulos.Rows[e.RowIndex].Index;
                         Font font = new Font("Arial", 12.0f, FontStyle.Bold);

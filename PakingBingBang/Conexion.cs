@@ -46,8 +46,8 @@ namespace PakingBingBang
             db = Crypt.Desencriptar(ConfigurationManager.AppSettings["database"]);
             user = Crypt.Desencriptar(ConfigurationManager.AppSettings["username"]);
             pass = Crypt.Desencriptar(ConfigurationManager.AppSettings["password"]);
-            cad = "Server= " + server + "; database= " + db + "; user id=" + user + "; Password= " + pass + "; Connection TimeOut=7";
-            //cad = "Server= DEVELOPMENT\\SQLDESARROLLO ; database = desarrollo; user id = sa ; Password = ; Connection TimeOut = 7";
+            cad = "Server= " + server + "; database= " + db + "; user id=" + user + "; Password= " + pass + "; Connection TimeOut=10";
+            //cad = "Data Source=.;Initial Catalog=Desarrollo;Integrated Security=True";
 
             return cad;
         }
@@ -674,7 +674,7 @@ namespace PakingBingBang
                         if (row.Cells["Articulo"].Value.ToString() == dr.GetString(0) && row.Cells["SUBCUENTA"].Value.ToString() == dr.GetString(1))
                         {
                             frm.lblNUmero.Text = Convert.ToString(Convert.ToInt32(frm.lblNUmero.Text) - Convert.ToInt32(row.Cells["EnCaja"].Value));
-                            row.Cells["EnCaja"].Value = 0;
+                            row.Cells["EnCaja"].Value = Convert.ToString(Convert.ToInt32(row.Cells["EnCaja"].Value) - dr.GetInt32(2)); ;
                         }
                     }
                 }
